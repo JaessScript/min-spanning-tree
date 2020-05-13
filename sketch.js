@@ -15,13 +15,13 @@ function draw() {
 	let unreached = [];
 	let reached = [];
 
-	for (let i = 0; i < vertices.length; i++) {
-		vertices[i].drawPoint();
+	for (let vertice of vertices) {
+		vertice.drawPoint();
 	}
 
 	// At first, all vertices are unreached
-	for (let i = 0; i < vertices.length; i++) {
-		unreached.push(vertices[i]);
+	for (let vertice of vertices) {
+		unreached.push(vertice);
 	}
 
 	// Let's randomly start considering the vertices[0]
