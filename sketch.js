@@ -5,9 +5,6 @@ function setup() {
 }
 
 function mousePressed() {
-	// let v = createVector(mouseX, mouseY);
-	// vertices.push(v);
-
 	let pt = new Edge(mouseX, mouseY);
 	vertices.push(pt);
 }
