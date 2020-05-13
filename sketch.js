@@ -5,8 +5,11 @@ function setup() {
 }
 
 function mousePressed() {
-	let v = createVector(mouseX, mouseY);
-	vertices.push(v);
+	// let v = createVector(mouseX, mouseY);
+	// vertices.push(v);
+
+	let pt = new Edge(mouseX, mouseY);
+	vertices.push(pt);
 }
 
 function draw() {
@@ -16,9 +19,7 @@ function draw() {
 	let reached = [];
 
 	for (let i = 0; i < vertices.length; i++) {
-		fill(255);
-		stroke(255);
-		ellipse(vertices[i].x, vertices[i].y, 16, 16);
+		vertices[i].drawPoint();
 	}
 
 	// At first, all vertices are unreached
@@ -36,9 +37,11 @@ function draw() {
 		let rIndex;
 		let uIndex;
 
+		// We look through all unreached points to find the minimum edge length between 2 points
 		for (let i = 0; i < reached.length; i++) {
 			for (let j = 0; j < unreached.length; j++) {
-				let d = dist(reached[i].x, reached[i].y, unreached[j].x, unreached[j].y);
+				let d = reached[i].getDistanceFrom(unreached[j]);
+				
 				if (d < record) {
 					record = d;
 					rIndex = i;
@@ -47,7 +50,10 @@ function draw() {
 			}
 		}
 
-		line(reached[rIndex].x, reached[rIndex].y, unreached[uIndex].x, unreached[uIndex].y);
+		// We draw the found minimum edge
+		reached[rIndex].drawEdge(unreached[uIndex]);
+		
+		// We transfer the unreached point giving the minimum edge length from the unreached to the reached points
 		reached.push(unreached[uIndex]);
 		unreached.splice(uIndex, 1);
 	}
