@@ -43,20 +43,27 @@ function setup() {
 	canvas.style('z-index', '-1');
 
 	next = select('#next');
-	next.position(windowWidth / 2, 5);
 	next.style('font-size', '1.5em');
 	setInterval(changeColor, 500);
 
 	click = select('#click');
-	click.position(windowWidth / 6, windowHeight / 6);
+	click.style('font-size', '1.5em');
 	click.style('color', 'white');
-	click.style('font-family', 'courier');
 
 	icons = [police, run, facebook, run, snapchat, police, run, instagram, tiktok, police, antenna, run, database, mobile, run, cctv2];
 }
 
+// For mobile
+function touchStarted() {
+	// Prevent the default click behaviour to avoid the 'double-click' bug
+	preventDefault();
+	let icon = random(icons);
+	let pt = new Edge(mouseX, mouseY, icon);
+	vertices.push(pt);
+}
+
 function mousePressed() {
-	let icon = getImage();
+	let icon = random(icons);
 	let pt = new Edge(mouseX, mouseY, icon);
 	vertices.push(pt);
 }
@@ -65,11 +72,6 @@ function changeColor() {
 	let colors = ['Red', 'Orange', 'Yellow', 'MediumSpringGreen', 'RoyalBlue', 'Purple', 'Pink', 'LightCyan'];
 	let col = random(colors);
 	next.style('background-color', col);
-}
-
-function getImage() {
-	let img = random(icons);
-	return img;
 }
 
 function draw() {
