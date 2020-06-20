@@ -9,6 +9,8 @@ let facebook;
 let snapchat;
 let instagram;
 let tiktok;
+let whatsapp;
+let telegram;
 let antenna;
 let database;
 let mobile;
@@ -29,6 +31,8 @@ function preload() {
 	database = loadImage('img/database.png');
 	mobile = loadImage('img/mobile.png');
 	cctv2 = loadImage('img/cctv2.png');
+	whatsapp = loadImage('img/whatsapp.png');
+	telegram = loadImage('img/telegram.png');
 	// selfie = loadImage('img/selfie.png');
 }
 
@@ -50,7 +54,7 @@ function setup() {
 	click.style('font-size', '1.5em');
 	click.style('color', 'white');
 
-	icons = [police, run, facebook, run, snapchat, police, run, instagram, tiktok, police, antenna, run, database, mobile, run, cctv2];
+	icons = [police, run, facebook, run, snapchat, police, run, instagram, run, tiktok, whatsapp, telegram, police, antenna, run, database, mobile, run, cctv2];
 }
 
 // For mobile
